@@ -61,7 +61,7 @@ module.exports = yeoman.generators.Base.extend({
 
   },
 
-  bootstrapVersion : function () {
+  bootstrap : function () {
 
     if (this.includeBootstrap) {
 
@@ -89,7 +89,7 @@ module.exports = yeoman.generators.Base.extend({
     }
   },
 
-  importFonts: function () {
+  fonts: function () {
     this.importFontsFrom = []
     if (this.includeSenadoCSS) {
       this.importFontsFrom.push('senado.css')
