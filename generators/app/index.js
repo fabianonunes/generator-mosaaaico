@@ -7,23 +7,9 @@ module.exports = yeoman.generators.Base.extend({
   
   prompting: function () {
 
-    var done = this.async();
-
     this.log(yosay(
       chalk.red('SenadoCss') + '!'
     ));
-
-    var prompts = [{
-      type: 'confirm',
-      name: 'includeSenadoCSS',
-      message: 'Deseja incluir o senado.css?',
-      default: true
-    }];
-    
-    this.prompt(prompts, function (props) {
-      this.includeSenadoCSS = props.includeSenadoCSS;
-      done();
-    }.bind(this));
 
   },
 
@@ -36,6 +22,10 @@ module.exports = yeoman.generators.Base.extend({
       name: 'features',
       message: 'Que recursos você deseja utilizar?',
       choices: [{
+        name: 'SenadoCss',
+        value: 'includeSenadoCSS',
+        checked: true
+      },{
         name: 'Bootstrap',
         value: 'includeBootstrap',
         checked: true
@@ -55,6 +45,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeJade = hasFeature('includeJade');
+      this.includeSenadoCSS = hasFeature('includeSenadoCSS');
 
       done();
     }.bind(this));
@@ -197,7 +188,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    this.npmInstall();
   }
 
 });
