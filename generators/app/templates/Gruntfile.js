@@ -97,14 +97,14 @@ module.exports = function (grunt) {
                 files: ['<%%= config.app %>/styles/{,*/}*.less'],
                 tasks: ['less', 'autoprefixer']
             },
-
+            
             <% if (includeJade) { %>
             jade: {
                 files: ['<%%= config.app %>/*.jade'],
                 tasks: ['jade']
             },
             <% } %>
-            
+
             livereload: {
                 options: {
                     livereload: '<%%= connect.options.livereload %>'
