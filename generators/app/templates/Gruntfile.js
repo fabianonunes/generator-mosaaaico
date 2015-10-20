@@ -103,6 +103,11 @@ module.exports = function (grunt) {
                 files: ['<%%= config.app %>/*.jade'],
                 tasks: ['jade']
             },
+            <% } else { %>
+            html: {
+                files: ['<%%= config.app %>/**/*.html'],
+                tasks: ['copy:html']
+            },
             <% } %>
 
             livereload: {
@@ -157,12 +162,20 @@ module.exports = function (grunt) {
                     flatten: true,
                     src: 'node_modules/{<%%= config.fonts.join(",") %>}/fonts/*'
                 }]
+            },
+            html: {
+                files: [{
+                    expand: true,
+                    cwd: '<%%= config.app %>',
+                    src: '**/*.html',
+                    dest: '<%%= config.dist %>'
+                }]
             }
         },
 
         concurrent: {
             server: [
-                'less', 'copy:fontify' <% if (includeJade) { %>, 'jade'<% } %>
+                'less', 'copy:fontify' <% if (includeJade) { %>, 'jade'<% } else { %>, 'copy:html'<% } %>
             ]
         }
 
@@ -188,10 +201,10 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', [
-        'clean:dist',
-        'concurrent:dist',
+        'clean',
+        'concurrent',
         'autoprefixer',
-        'copy:dist',
+        'copy',
     ]);
 
     grunt.registerTask('default', [
