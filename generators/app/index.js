@@ -9,7 +9,7 @@ module.exports = yeoman.generators.Base.extend({
     yeoman.generators.Base.apply(this, arguments);
     this.argument('installDeps', { type: String, defaults: false });
   },
-  
+
   prompting: function () {
 
     this.log(yosay(
@@ -123,7 +123,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   writing: {
-  
+
     gruntfile: function () {
       this.template('Gruntfile.js');
     },
@@ -151,7 +151,7 @@ module.exports = yeoman.generators.Base.extend({
     styles: function () {
 
       var bootstrapFile;
-      
+
       if (this.includeBootstrap) {
         switch (this.bootstrapVersion) {
           case  "^3.3.5":
@@ -170,7 +170,7 @@ module.exports = yeoman.generators.Base.extend({
       if (this.includeSenadoCSS) {
         this.copy('app/styles/vendors/senado.less');
       }
-      
+
       this.copy('app/styles/utils/variables.less');
       this.template('app/styles/main.less');
 
@@ -193,7 +193,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    if (this.installDeps) {
+    if (this.installDeps != 'noinstall') {
       this.npmInstall();
     }
   }
