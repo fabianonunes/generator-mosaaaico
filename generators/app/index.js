@@ -4,6 +4,11 @@ var chalk = require('chalk');
 var yosay = require('yosay');
 
 module.exports = yeoman.generators.Base.extend({
+
+  constructor: function () {
+    yeoman.generators.Base.apply(this, arguments);
+    this.argument('installDeps', { type: String, defaults: false });
+  },
   
   prompting: function () {
 
@@ -188,7 +193,9 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.npmInstall();
+    if (this.installDeps) {
+      this.npmInstall();
+    }
   }
 
 });
