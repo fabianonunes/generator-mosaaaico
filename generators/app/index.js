@@ -61,7 +61,7 @@ module.exports = yeoman.generators.Base.extend({
 
   },
 
-  bootstrap : function () {
+  twbsVersion : function () {
 
     if (this.includeBootstrap) {
 
@@ -83,6 +83,33 @@ module.exports = yeoman.generators.Base.extend({
 
       this.prompt(prompts, function (answers) {
         this.bootstrapVersion = answers.bootstrapVersion;
+        done();
+      }.bind(this));
+
+    }
+  },
+
+  twbsRefer : function () {
+    if (this.includeBootstrap) {
+
+      var done = this.async();
+
+      var prompts = [{
+        type: 'list',
+        name: 'bootstrapEmbed',
+        message: 'Como o bootstrap será usado?',
+        choices: [{
+          name: 'embutido',
+          value: true
+        },{
+          name: 'referenciado',
+          value: false
+        }],
+        default: 0
+      }];
+
+      this.prompt(prompts, function (answers) {
+        this.bootstrapEmbed = answers.bootstrapEmbed;
         done();
       }.bind(this));
 
@@ -162,14 +189,15 @@ module.exports = yeoman.generators.Base.extend({
 
     html : function () {
       if (this.includeJade) {
-        this.copy('app/index.jade')
+        this.template('app/index.jade')
       } else {
-        this.copy('app/index.html')
+        this.template('app/index.html')
       }
     }
   },
 
   install: function () {
-    // this.installDependencies();
+    //this.installDependencies();
   }
+
 });

@@ -7,7 +7,8 @@ html(lang='pt')
     title
     meta(name='viewport', content='width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no')
     link(href='styles/main.css', rel='stylesheet')
-    
+    <% if (!bootstrapEmbed) { %>link(href='../node_modules/bootstrap/dist/css/bootstrap.min.css', rel='stylesheet')<% } %>
+
   body#sfcss
 
     h1.titulo-principal
