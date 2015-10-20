@@ -85,10 +85,6 @@ module.exports = function (grunt) {
                 }]
             }
         },
-        <% } else { %>
-        html: {
-
-        },
         <% }%>
 
         watch: {
@@ -106,11 +102,6 @@ module.exports = function (grunt) {
             jade: {
                 files: ['<%%= config.app %>/*.jade'],
                 tasks: ['jade']
-            },
-            <% } else { %>
-            html: {
-                files: ['<%%= config.app %>/*.html'],
-                tasks: ['html']
             },
             <% } %>
             
