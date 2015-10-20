@@ -13,8 +13,8 @@
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-watch": "^0.6.1",
     "jshint-stylish": "^2.0.1",
-    "load-grunt-tasks": "^3.3.0",
-    "senado.css": "https://github.com/agenciasenado/senado.css.git#develop",
+    "load-grunt-tasks": "^3.3.0",<% if (includeSenadoCSS) { %>
+    "senado.css": "git://github.com/agenciasenado/senado.css.git#develop",<% } %>
     "time-grunt": "^1.2.1"
   },
   "dependencies" : {

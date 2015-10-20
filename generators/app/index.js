@@ -76,7 +76,7 @@ module.exports = yeoman.generators.Base.extend({
           value: '^3.3.5'
         },{
           name: '2.3.x',
-          value: '^2.3.2'
+          value: 'git://github.com/twbs/bootstrap.git#v2.3.2'
         }],
         default: 0
       }];
@@ -134,7 +134,7 @@ module.exports = yeoman.generators.Base.extend({
           case  "^3.3.5":
             bootstrapFile = "bootstrap3.less"
             break;
-          case  "^2.3.2":
+          case  "git://github.com/twbs/bootstrap.git#v2.3.2":
             bootstrapFile = "bootstrap2.less"
             break;
         }
