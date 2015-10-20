@@ -18,7 +18,7 @@
     "time-grunt": "^1.2.1"
   },
   "dependencies" : {
-      "jquery": "^2.1.4",
-      "bootstrap": "<%= bootstrapVersion %>"
+      "jquery": "^2.1.4"<% if (includeBootstrap) { %>
+      , "bootstrap": "<%= bootstrapVersion %>"<% } %>
   }
 }
