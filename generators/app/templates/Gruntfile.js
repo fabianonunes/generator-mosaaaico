@@ -203,6 +203,7 @@ module.exports = function (grunt) {
         'clean',
         'concurrent',
         'autoprefixer',
+        'cssmin',
         'copy',
     ]);
 
