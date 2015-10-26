@@ -88,7 +88,7 @@ module.exports = function (grunt) {
         <% }%>
 
         watch: {
-            
+
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -97,10 +97,9 @@ module.exports = function (grunt) {
                 files: ['<%%= config.app %>/styles/{,*/}*.less'],
                 tasks: ['less', 'autoprefixer']
             },
-            
             <% if (includeJade) { %>
             jade: {
-                files: ['<%%= config.app %>/*.jade'],
+                files: ['<%%= config.app %>/**/*.jade'],
                 tasks: ['jade']
             },
             <% } else { %>
@@ -131,13 +130,13 @@ module.exports = function (grunt) {
             dev: {
                 options: {
                     middleware: function(connect, options, middlewares) {
-                        
+
                         middlewares.unshift(function(req, res, next) {
                             res.setHeader('Access-Control-Allow-Origin', '*');
                             res.setHeader('Access-Control-Allow-Methods', '*');
                             next();
                         });
-                        
+
                         var serveStatic = require('serve-static');
                         middlewares.unshift(serveStatic("dist"))
 
@@ -204,6 +203,7 @@ module.exports = function (grunt) {
         'clean',
         'concurrent',
         'autoprefixer',
+        'cssmin',
         'copy',
     ]);
 
