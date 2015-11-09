@@ -16,6 +16,17 @@ module.exports = yeoman.generators.Base.extend({
       chalk.red('SenadoCss') + '!'
     ));
 
+    var done = this.async();
+    this.prompt({
+      type    : 'input',
+      name    : 'name',
+      message : 'Qual o nome do projeto?',
+      default : 'design'
+    }, function (answers) {
+      this.name = answers.name;
+      done();
+    }.bind(this));
+
   },
 
   support : function () {
@@ -38,6 +49,10 @@ module.exports = yeoman.generators.Base.extend({
         name: 'Jade',
         value: 'includeJade',
         checked: false
+      },{
+        name: 'webpack',
+        value: 'includeWebpack',
+        checked: false
       }]
     }];
 
@@ -51,6 +66,7 @@ module.exports = yeoman.generators.Base.extend({
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeJade = hasFeature('includeJade');
       this.includeSenadoCSS = hasFeature('includeSenadoCSS');
+      this.includeWebpack = hasFeature('includeWebpack');
 
       done();
     }.bind(this));
@@ -126,6 +142,9 @@ module.exports = yeoman.generators.Base.extend({
 
     gruntfile: function () {
       this.template('Gruntfile.js');
+      if (this.includeWebpack) {
+        this.template('webpack.config.js');
+      }
     },
 
     app: function () {
