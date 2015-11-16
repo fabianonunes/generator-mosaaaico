@@ -1,4 +1,5 @@
 'use strict';
+
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -15,6 +16,17 @@ module.exports = yeoman.generators.Base.extend({
     this.log(yosay(
       chalk.red('SenadoCss') + '!'
     ));
+
+    var done = this.async();
+    this.prompt({
+      type    : 'input',
+      name    : 'name',
+      message : 'Qual o nome do projeto?',
+      default : 'design'
+    }, function (answers) {
+      this.name = answers.name;
+      done();
+    }.bind(this));
 
   },
 
@@ -38,6 +50,10 @@ module.exports = yeoman.generators.Base.extend({
         name: 'Jade',
         value: 'includeJade',
         checked: false
+      },{
+        name: 'webpack',
+        value: 'includeWebpack',
+        checked: false
       }]
     }];
 
@@ -51,6 +67,7 @@ module.exports = yeoman.generators.Base.extend({
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includeJade = hasFeature('includeJade');
       this.includeSenadoCSS = hasFeature('includeSenadoCSS');
+      this.includeWebpack = hasFeature('includeWebpack');
 
       done();
     }.bind(this));
@@ -125,7 +142,25 @@ module.exports = yeoman.generators.Base.extend({
   writing: {
 
     gruntfile: function () {
+
       this.template('Gruntfile.js');
+
+      this.template('config/autoprefixer.js')
+      this.template('config/clean.js')
+      this.template('config/concurrent.js')
+      this.template('config/config.js')
+      this.template('config/connect.js')
+      this.template('config/copy.js')
+      this.template('config/cssmin.js')
+      this.template('config/less.js')
+      this.template('config/watch.js')
+      if (this.includeWebpack) {
+        this.template('config/webpack.js')
+      }
+      if (this.includeJade) {
+        this.template('config/jade.js')
+      }
+
     },
 
     app: function () {
@@ -177,10 +212,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     scripts: function () {
-      this.fs.copy(
-        this.templatePath('app/scripts'),
-        this.destinationPath('app/scripts')
-      );
+      this.directory('app/scripts')
     },
 
     html : function () {
