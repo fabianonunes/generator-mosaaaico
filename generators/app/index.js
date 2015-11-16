@@ -217,9 +217,9 @@ module.exports = yeoman.generators.Base.extend({
 
     html : function () {
       if (this.includeJade) {
-        this.template('app/main.jade')
+        this.template('app/index.jade')
       } else {
-        this.template('app/main.html')
+        this.template('app/index.html')
       }
     }
   },

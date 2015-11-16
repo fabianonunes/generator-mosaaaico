@@ -15,11 +15,11 @@ module.exports = {
       dest: "<%%= config.dist %>"
     }]
   },
-  js: {
+  others: {
     files: [{
       expand: true,
       cwd: "<%%= config.app %>",
-      src: "**/*.js",
+      src: ["**/*", "!**/*.jade", "!**/*.less"],
       dest: "<%%= config.dist %>"
     }]
   }

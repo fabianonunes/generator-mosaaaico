@@ -15,9 +15,6 @@ module.exports = function (grunt) {
         if (grunt.option('allow-remote')) {
             grunt.config.set('connect.options.hostname', '0.0.0.0')
         }
-        if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive'])
-        }
 
         grunt.task.run([
             'clean',
@@ -37,8 +34,6 @@ module.exports = function (grunt) {
         'copy'
     ])
 
-    grunt.registerTask('default', [
-        'build'
-    ])
+    grunt.registerTask('default', ['build'])
 
 }
