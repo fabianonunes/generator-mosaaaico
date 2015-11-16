@@ -1,12 +1,12 @@
 
 var webpack = require('webpack')
 
-module.exports = {
+module.exports.main = {
     entry: {
         '<%=name%>': ['main']
     },
     output: {
-        path: __dirname + '/app/scripts',
+        path: '<%%= config.dist %>/scripts',
         filename: '[name].min.js'
     },
     externals: {
@@ -22,11 +22,11 @@ module.exports = {
     resolve: {
         modulesDirectories: [
             'node_modules',
-            __dirname + '/app/scripts'
+            '<%%= config.app %>/scripts'
         ],
         alias: {
             'hogan.js' : 'hogan.js/lib/template',
-            'handlebars' : 'handlebars/runtime',
+            'handlebars' : 'handlebars/runtime'
         }
     },
     plugins: [
@@ -40,5 +40,6 @@ module.exports = {
                 warnings: false
             }
         })
-    ]
-};
+    ],
+    watch: true
+}
