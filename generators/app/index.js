@@ -214,7 +214,7 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     scripts: function () {
-      this.directory('app/scripts')
+      this.directory(this.includeWebpack ? 'app/scripts' : 'app/modules')
     },
 
     html : function () {
