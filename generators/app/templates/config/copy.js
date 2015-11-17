@@ -19,7 +19,12 @@ module.exports = {
     files: [{
       expand: true,
       cwd: "<%%= config.app %>",
-      src: ["**/*", "!**/*.jade", "!**/*.less"],
+      src: [
+        "**/*",
+        "!**/*.jade",
+        "!**/*.less",<% if (includeWebpack) { %>
+        "!**/*.js" <% } %>
+      ],
       dest: "<%%= config.dist %>"
     }]
   }
