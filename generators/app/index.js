@@ -154,8 +154,10 @@ module.exports = yeoman.generators.Base.extend({
       this.template('config/cssmin.js')
       this.template('config/less.js')
       this.template('config/watch.js')
+
       if (this.includeWebpack) {
         this.template('config/webpack.js')
+        this.template('webpack.config.js')
       }
       if (this.includeJade) {
         this.template('config/jade.js')
