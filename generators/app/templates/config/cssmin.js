@@ -5,7 +5,7 @@ module.exports = {
   dist: {
     files: [{
       expand: true,
-      src: "<%%= config.dist %>/styles/*.css"
+      src: '<%%= config.dist %>/styles/*.css'
     }]
   }
 }
