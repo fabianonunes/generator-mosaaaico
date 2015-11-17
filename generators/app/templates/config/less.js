@@ -7,7 +7,7 @@ module.exports = {
   base: {
     files: [{
       expand: true,
-      cwd: '<%%= config.app %>/styles',
+      cwd: '<%%= config.app %>/less',
       src: '*.less',
       dest: '<%%= config.dist %>/styles',
       ext: '.css'
