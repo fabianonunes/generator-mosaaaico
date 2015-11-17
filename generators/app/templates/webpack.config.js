@@ -6,7 +6,7 @@ module.exports = {
         '<%=name%>': ['main']
     },
     output: {
-        path: __dirname + '/app/scripts',
+        path: __dirname + '/dist/scripts',
         filename: '[name].min.js'
     },
     externals: {
@@ -14,20 +14,14 @@ module.exports = {
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: 'babel',  query: { presets: ['es2015']} },
-            { test: /\.hbs$/, loader: 'handlebars-loader' },
-            { test: /\.mustache$/, loader: 'mustache-loader?minify' }
+            { test: /\.jade$/, loader: 'jade-loader' }
         ]
     },
     resolve: {
         modulesDirectories: [
             'node_modules',
             __dirname + '/app/scripts'
-        ],
-        alias: {
-            'hogan.js' : 'hogan.js/lib/template',
-            'handlebars' : 'handlebars/runtime',
-        }
+        ]
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
