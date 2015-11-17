@@ -1,4 +1,7 @@
 module.exports = {
+  options : {
+    spawn: false
+  },
   gruntfile: {
     files: ['Gruntfile.js']
   },
@@ -23,6 +26,7 @@ module.exports = {
     },
     files: [
       '<%%= config.dist %>/{,*/}*.html',
+      '<%%= config.dist %>/scripts/{,*/}*.js',
       '<%%= config.dist %>/styles/{,*/}*.css'
     ]
   }
