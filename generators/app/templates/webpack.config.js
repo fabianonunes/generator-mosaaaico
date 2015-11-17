@@ -1,12 +1,12 @@
 
 var webpack = require('webpack')
 
-module.exports.main = {
+module.exports = {
     entry: {
         '<%=name%>': ['main']
     },
     output: {
-        path: '<%%= config.dist %>/scripts',
+        path: __dirname + '/app/scripts',
         filename: '[name].min.js'
     },
     externals: {
@@ -14,19 +14,19 @@ module.exports.main = {
     },
     module: {
         loaders: [
-            { test: /\.js$/, loader: "babel",  query: { presets: ['es2015']} },
-            { test: /\.hbs$/, loader: "handlebars-loader" },
-            { test: /\.mustache$/, loader: "mustache-loader?minify" }
+            { test: /\.js$/, loader: 'babel',  query: { presets: ['es2015']} },
+            { test: /\.hbs$/, loader: 'handlebars-loader' },
+            { test: /\.mustache$/, loader: 'mustache-loader?minify' }
         ]
     },
     resolve: {
         modulesDirectories: [
             'node_modules',
-            '<%%= config.app %>/scripts'
+            __dirname + '/app/scripts'
         ],
         alias: {
             'hogan.js' : 'hogan.js/lib/template',
-            'handlebars' : 'handlebars/runtime'
+            'handlebars' : 'handlebars/runtime',
         }
     },
     plugins: [
@@ -40,6 +40,5 @@ module.exports.main = {
                 warnings: false
             }
         })
-    ],
-    watch: true
+    ]
 }
