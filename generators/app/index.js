@@ -199,22 +199,26 @@ module.exports = yeoman.generators.Base.extend({
             break;
         }
         this.fs.copy(
-          this.templatePath('app/styles/vendors/' + bootstrapFile),
-          this.destinationPath('app/styles/vendors/bootstrap.less')
+          this.templatePath('app/less/vendors/' + bootstrapFile),
+          this.destinationPath('app/less/vendors/bootstrap.less')
         );
       }
 
       if (this.includeSenadoCSS) {
-        this.copy('app/styles/vendors/senado.less');
+        this.copy('app/less/vendors/senado.less');
       }
 
-      this.copy('app/styles/utils/variables.less');
-      this.template('app/styles/main.less');
+      this.copy('app/less/utils/variables.less');
+      this.template('app/less/main.less');
 
     },
 
     scripts: function () {
-      this.directory(this.includeWebpack ? 'app/scripts' : 'app/modules')
+      this.directory(this.includeWebpack ? 'app/modules' : 'app/scripts')
+    },
+
+    assets: function () {
+      this.directory('app/assets')
     },
 
     html : function () {
