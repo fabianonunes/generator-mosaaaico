@@ -2,7 +2,8 @@ module.exports = {
   options: {
     paths: ['./node_modules'],
     sourceMap: true,
-    sourceMapRootpath: '../'
+    sourceMapRootpath: '../',
+    sourceMapFileInline: true
   },
   base: {
     files: [{
