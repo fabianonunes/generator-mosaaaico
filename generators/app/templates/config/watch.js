@@ -1,6 +1,7 @@
 module.exports = {
   options : {
-    spawn: false
+    spawn: false,
+    livereload: '<%%= connect.options.livereload %>'
   },
   gruntfile: {
     files: ['Gruntfile.js']
@@ -20,14 +21,9 @@ module.exports = {
       files: ['<%%= config.app %>/**/*.html'],
       tasks: ['copy:html']
   },<% } %>
-  livereload: {
-    options: {
-      livereload: '<%%= connect.options.livereload %>'
-    },
+  javascript: {
     files: [
-      '<%%= config.dist %>/{,*/}*.html',
-      '<%%= config.dist %>/scripts/{,*/}*.js',
-      '<%%= config.dist %>/styles/{,*/}*.css'
+      '<%%= config.dist %>/scripts/{,*/}*.js'
     ]
   }
 }
