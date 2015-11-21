@@ -1,9 +1,8 @@
 
-var webpackConfig = require('../webpack.config.js'),
-    _ = require('underscore')
+var webpackConfig = require('../webpack.config.js')
 
 module.exports = {
-  compile : _.assign(webpackConfig, {
+  dev: Object.assign({}, webpackConfig, {
     watch: true,
     stats: {
       colors: true,
@@ -11,5 +10,6 @@ module.exports = {
       reasons: false
     },
     devtool: 'eval'
-  })
+  }),
+  build: webpackConfig
 }
