@@ -3,7 +3,6 @@ module.exports = {
     'less'
     , 'copy:fontify'<% if (includeJade) { %>
     , 'jade'<% } else { %>
-    , 'copy:html'<% } %><% if (includeWebpack) { %>
-    , 'webpack'<% } %>
+    , 'copy:html'<% } %>
   ]
 }

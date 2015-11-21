@@ -20,7 +20,8 @@ module.exports = function (grunt) {
             'clean',
             'concurrent',
             'autoprefixer',
-            'connect:dev',
+            'connect:dev',<% if (includeWebpack) { %>
+            'webpack',<% } %>
             'watch'
         ])
 

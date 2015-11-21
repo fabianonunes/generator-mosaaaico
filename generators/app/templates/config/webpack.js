@@ -4,6 +4,12 @@ var webpackConfig = require('../webpack.config.js'),
 
 module.exports = {
   compile : _.assign(webpackConfig, {
-    watch: false
+    watch: true,
+    stats: {
+      colors: true,
+      modules: true,
+      reasons: false
+    },
+    devtool: 'eval'
   })
 }

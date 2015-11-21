@@ -34,6 +34,5 @@ module.exports = {
                 warnings: false
             }
         })
-    ],
-    devtool : "eval"
+    ]
 }
