@@ -25,6 +25,10 @@ html(lang='pt')
 
     script(src='jquery/dist/jquery.min.js')
     script(src='bootstrap/dist/js/bootstrap.min.js')
+    <% if (includeWebpack) { %>
+    script(src='scripts/<%=name%>.min.js')
+    <% } else { %>
     script(src='scripts/main.js')
+    <% } %>
 
     script(src='//localhost:35729/livereload.js')
