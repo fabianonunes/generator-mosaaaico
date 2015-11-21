@@ -15,13 +15,14 @@ html(lang='pt')
 
   body#sfcss
 
-    .container
-      .row
-        .col-xs-12
-          h1.titulo-principal.text-right.kilo
-            | MOSAAAICO
-          .text-center
-            img.logo(src="assets/logo.svg")
+    block content
+      .container
+        .row
+          .col-xs-12
+            h1.titulo-principal.text-right.kilo
+              | MOSAAAICO
+            .text-center
+              img.logo(src="assets/logo.svg")
 
     script(src='jquery/dist/jquery.min.js')
     script(src='bootstrap/dist/js/bootstrap.min.js')
