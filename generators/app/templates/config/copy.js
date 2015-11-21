@@ -4,7 +4,10 @@ module.exports = {
       expand: true,
       dest: '<%%= config.dist %>/fonts',
       flatten: true,
-      src: 'node_modules/{<%%= config.fonts.join(",") %>}/fonts/*'
+      src: [
+        '<%%= config.app %>/assets/fonts/*',
+        'node_modules/{<%%= config.fonts.join(",") %>}/fonts/*'
+      ]
     }]
   },
   html: {
@@ -21,9 +24,10 @@ module.exports = {
       cwd: '<%%= config.app %>',
       src: [
         '**/*',
+        '!**/fonts/*',
         '!**/*.jade',
         '!**/*.less',<% if (includeWebpack) { %>
-        '!**/*.js' <% } %>
+        '!**/*.js'<% } %>
       ],
       dest: '<%%= config.dist %>',
       filter: 'isFile'
