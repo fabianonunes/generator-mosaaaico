@@ -25,7 +25,8 @@ module.exports = {
         '!**/*.less',<% if (includeWebpack) { %>
         '!**/*.js' <% } %>
       ],
-      dest: '<%%= config.dist %>'
+      dest: '<%%= config.dist %>',
+      filter: 'isFile'
     }]
   }
 }
