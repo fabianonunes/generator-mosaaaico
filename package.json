@@ -1,10 +1,10 @@
 {
-  "name": "generator-senadocss",
+  "name": "generator-mosaaaico",
   "version": "0.0.3",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "fabianonunes/generator-senadocss",
+  "repository": "fabianonunes/generator-mosaaaico",
   "author": {
     "name": "Fabiano Nunes",
     "email": "fabiano@nunes.me",
