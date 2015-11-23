@@ -2,25 +2,35 @@ module.exports = {
   fontify: {
     files: [{
       expand: true,
-      dest: "<%%= config.dist %>/fonts",
+      dest: '<%%= config.dist %>/fonts',
       flatten: true,
-      src: "node_modules/{<%%= config.fonts.join(\",\") %>}/fonts/*"
+      src: [
+        '<%%= config.app %>/assets/fonts/*',
+        'node_modules/{<%%= config.fonts.join(",") %>}/fonts/*'
+      ]
     }]
   },
   html: {
     files: [{
       expand: true,
-      cwd: "<%%= config.app %>",
-      src: "**/*.html",
-      dest: "<%%= config.dist %>"
+      cwd: '<%%= config.app %>',
+      src: '**/*.html',
+      dest: '<%%= config.dist %>'
     }]
   },
   others: {
     files: [{
       expand: true,
-      cwd: "<%%= config.app %>",
-      src: ["**/*", "!**/*.jade", "!**/*.less"],
-      dest: "<%%= config.dist %>"
+      cwd: '<%%= config.app %>',
+      src: [
+        '**/*',
+        '!**/fonts/*',
+        '!**/*.jade',
+        '!**/*.less',<% if (includeWebpack) { %>
+        '!**/*.js'<% } %>
+      ],
+      dest: '<%%= config.dist %>',
+      filter: 'isFile'
     }]
   }
 }

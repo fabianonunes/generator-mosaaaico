@@ -154,8 +154,10 @@ module.exports = yeoman.generators.Base.extend({
       this.template('config/cssmin.js')
       this.template('config/less.js')
       this.template('config/watch.js')
+
       if (this.includeWebpack) {
         this.template('config/webpack.js')
+        this.template('webpack.config.js')
       }
       if (this.includeJade) {
         this.template('config/jade.js')
@@ -197,22 +199,26 @@ module.exports = yeoman.generators.Base.extend({
             break;
         }
         this.fs.copy(
-          this.templatePath('app/styles/vendors/' + bootstrapFile),
-          this.destinationPath('app/styles/vendors/bootstrap.less')
+          this.templatePath('app/less/vendors/' + bootstrapFile),
+          this.destinationPath('app/less/vendors/bootstrap.less')
         );
       }
 
       if (this.includeSenadoCSS) {
-        this.copy('app/styles/vendors/senado.less');
+        this.copy('app/less/vendors/senado.less');
       }
 
-      this.copy('app/styles/utils/variables.less');
-      this.template('app/styles/main.less');
+      this.copy('app/less/utils/variables.less');
+      this.template('app/less/main.less');
 
     },
 
     scripts: function () {
-      this.directory('app/scripts')
+      this.directory(this.includeWebpack ? 'app/modules' : 'app/scripts')
+    },
+
+    assets: function () {
+      this.directory('app/assets')
     },
 
     html : function () {
@@ -226,7 +232,7 @@ module.exports = yeoman.generators.Base.extend({
 
   install: function () {
     if (this.installDeps != 'noinstall') {
-      this.npmInstall();
+      this.npmInstall()
     }
   }
 

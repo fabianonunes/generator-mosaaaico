@@ -1,16 +1,17 @@
 module.exports = {
   options: {
-    paths: ["./node_modules"],
+    paths: ['./node_modules'],
     sourceMap: true,
-    sourceMapRootpath: "../"
+    sourceMapRootpath: '../',
+    sourceMapFileInline: true
   },
   base: {
     files: [{
       expand: true,
-      cwd: "<%%= config.app %>/styles",
-      src: "*.less",
-      dest: "<%%= config.dist %>/styles",
-      ext: ".css"
+      cwd: '<%%= config.app %>/less',
+      src: '*.less',
+      dest: '<%%= config.dist %>/styles',
+      ext: '.css'
     }]
   }
 }

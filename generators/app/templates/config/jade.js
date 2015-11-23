@@ -6,9 +6,9 @@ module.exports = {
     files: [{
       expand: true,
       flatten: true,
-      src: "<%%= config.app %>/*.jade",
-      dest: "<%%= config.dist %>",
-      ext: ".html"
+      src: '<%%= config.app %>/*.jade',
+      dest: '<%%= config.dist %>',
+      ext: '.html'
     }]
   }
 }

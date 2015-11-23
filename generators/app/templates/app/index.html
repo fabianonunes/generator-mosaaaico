@@ -7,14 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no">
     <link href="styles/main.css" rel="stylesheet">
     <% if (includeBootstrap && !bootstrapEmbed) { %><link href='bootstrap/dist/css/bootstrap.min.css' rel='stylesheet'><% } %>
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:100" rel="stylesheet" type="text/css">
+    <style>
+      * { font-family: 'Josefin Sans', sans-serif; font-weight: 100; }
+      .logo { height: calc(100vh - 110px); }
+    </style>
   </head>
 
   <body id="sfcss">
 
-    <h1 class="titulo-principal">
-      Projeto
-      <small>Título</small>
-    </h1>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="titulo-principal text-right kilo">mosaaaico</h1>
+          <div class="text-center"><img src="assets/logo.svg" class="logo"></div>
+        </div>
+      </div>
+    </div>
 
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>

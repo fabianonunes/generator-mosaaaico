@@ -20,7 +20,8 @@ module.exports = function (grunt) {
             'clean',
             'concurrent',
             'autoprefixer',
-            'connect:dev',
+            'connect:dev',<% if (includeWebpack) { %>
+            'webpack:dev',<% } %>
             'watch'
         ])
 
@@ -30,7 +31,8 @@ module.exports = function (grunt) {
         'clean',
         'concurrent',
         'autoprefixer',
-        'cssmin',
+        'cssmin',<% if (includeWebpack) { %>
+        'webpack:build',<% } %>
         'copy'
     ])
 
