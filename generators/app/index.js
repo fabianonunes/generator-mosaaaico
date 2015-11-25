@@ -224,6 +224,7 @@ module.exports = yeoman.generators.Base.extend({
     html : function () {
       if (this.includeJade) {
         this.template('app/index.jade')
+        this.template('app/senado.jade')
       } else {
         this.template('app/index.html')
       }

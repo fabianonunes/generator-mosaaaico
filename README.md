@@ -1,17 +1,26 @@
-# gerador mosaaaico
+# Mosaaaico
 
-> Gerador de esqueletos para novos projetos de prototipagem HTML rápida.
+Mosaaaico é um gerador de projeto `html/jade` + `css/less`. Seu objetivo é
+permitir a criação de protótipos e componentes `html` + `CSS` + `javascript`.
 
+Internamente, é apenas um conjunto que tarefas Grunt que definem um esquema
+dogmático de organização.
 
 ## Início
 
-#### O que é Yeoman?
+#### Dependências
 
-Um kit para gerar geradores. É isso. Leia mais [aqui](http://yeoman.io)
+Para instalar o `mosaaaico`, precisamos de algumas dependências:
 
-```bash
-sudo npm install -g yo
-```
+* node.js
+* grunt
+* yeoman (também chamado `yo`)
+* git (opcional)
+
+##### nodejs
+
+Para instalar o Node, baixe a versão adequada a seu sistema operacional https://nodejs.org/en/download/
+
 
 # mosaaaico
 
