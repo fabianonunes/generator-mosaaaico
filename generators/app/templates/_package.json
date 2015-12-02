@@ -15,7 +15,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "jshint-stylish": "^2.1.0",
     "load-grunt-tasks": "^3.3.0",<% if (includeSenadoCSS) { %>
-    "design.shell": "git+ssh://git@md1261:design/design-shell.git#1.1.0",
+    "design.shell": "git+ssh://git@md1261:design/design-shell.git#1.2.0",
     "senado.css": "https://github.com/agenciasenado/senado.css.git#2.0.1",<% } %>
     "serve-static": "^1.10.0",<% if (includeWebpack) { %>
     "webpack": "^1.12.8",
