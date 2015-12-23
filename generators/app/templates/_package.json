@@ -12,7 +12,8 @@
     "grunt-contrib-cssmin": "^0.14.0",<% if (includeJade) { %>
     "grunt-contrib-jade": "^0.15.0",<% } %>
     "grunt-contrib-less": "^1.1.0",
-    "grunt-contrib-watch": "^0.6.1",
+    "grunt-contrib-watch": "^0.6.1",<% if (includeStyledown) { %>
+    "grunt-styledown": "0.0.3",<% } %>
     "jshint-stylish": "^2.1.0",
     "load-grunt-tasks": "^3.3.0",<% if (includeSenadoCSS) { %>
     "design.shell": "https://github.com/fabianonunes/design.shell.git#1.2.0",

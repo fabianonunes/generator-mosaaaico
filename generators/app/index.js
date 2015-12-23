@@ -51,6 +51,10 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeJade',
         checked: false
       },{
+        name: 'styledown',
+        value: 'includeStyledown',
+        checked: false
+      },{
         name: 'webpack',
         value: 'includeWebpack',
         checked: false
@@ -68,6 +72,7 @@ module.exports = yeoman.generators.Base.extend({
       this.includeJade = hasFeature('includeJade');
       this.includeSenadoCSS = hasFeature('includeSenadoCSS');
       this.includeWebpack = hasFeature('includeWebpack');
+      this.includeStyledown = hasFeature('includeStyledown');
 
       done();
     }.bind(this));
@@ -200,6 +205,13 @@ module.exports = yeoman.generators.Base.extend({
       this.copy('app/less/utils/variables.less');
       this.template('app/less/main.less');
 
+    },
+    
+    styledown : function () {
+      if (this.includeStyledown) {
+        this.template('config/styledown.js');
+        this.directory('styleguide');
+      }
     },
 
     scripts: function () {
