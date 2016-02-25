@@ -179,11 +179,11 @@ module.exports = yeoman.generators.Base.extend({
 
       if (this.includeBootstrap) {
         switch (this.bootstrapVersion) {
-          case  "^3.3.5":
-            bootstrapFile = "bootstrap3.less"
+          case  '^3.3.5':
+            bootstrapFile = 'bootstrap3.less'
             break;
-          case  "https://github.com/twbs/bootstrap.git#v2.3.2":
-            bootstrapFile = "bootstrap2.less"
+          case  'https://github.com/twbs/bootstrap.git#v2.3.2':
+            bootstrapFile = 'bootstrap2.less'
             break;
         }
         this.fs.copy(
@@ -220,7 +220,7 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    if (this.installDeps != 'noinstall') {
+    if (this.installDeps !== 'noinstall') {
       this.npmInstall()
     }
   }
