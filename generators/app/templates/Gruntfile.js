@@ -8,7 +8,7 @@ module.exports = function (grunt) {
       data : {
         app: 'app',
         dist: 'dist',
-        fonts: <%= JSON.stringify(importFontsFrom) %>
+        fonts: <%- JSON.stringify(importFontsFrom) %>
       }
     })
 
