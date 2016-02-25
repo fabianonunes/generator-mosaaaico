@@ -4,11 +4,13 @@
 
 module.exports = function (grunt) {
 
-    require('time-grunt')(grunt)
-    require('load-grunt-tasks')(grunt, {scope: 'devDependencies'})
-
-    var configs = require('load-grunt-configs')(grunt)
-    grunt.initConfig(configs)
+    require('load-grunt-configs')(grunt, {
+      data : {
+        app: 'app',
+        dist: 'dist',
+        fonts: <%= JSON.stringify(importFontsFrom) %>
+      }
+    })
 
     grunt.registerTask('dev', '--allow-remote para permitir acesso externo', function (target) {
 
@@ -16,26 +18,8 @@ module.exports = function (grunt) {
             grunt.config.set('connect.options.hostname', '0.0.0.0')
         }
 
-        grunt.task.run([
-            'clean',
-            'concurrent',
-            'autoprefixer',
-            'connect:dev',<% if (includeWebpack) { %>
-            'webpack:dev',<% } %>
-            'watch'
-        ])
+        grunt.task.run(['_dev'])
 
     })
-
-    grunt.registerTask('build', [
-        'clean',
-        'concurrent',
-        'autoprefixer',
-        'cssmin',<% if (includeWebpack) { %>
-        'webpack:build',<% } %>
-        'copy'
-    ])
-
-    grunt.registerTask('default', ['build'])
 
 }
