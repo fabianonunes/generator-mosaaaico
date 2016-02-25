@@ -8,31 +8,31 @@ module.exports = yeoman.generators.Base.extend({
 
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
-    this.argument('installDeps', { type: String, defaults: false });
+    this.argument('installDeps', { type: String, defaults: false })
   },
 
   prompting: function () {
 
     this.log(yosay(
       chalk.red('SenadoCss') + '!'
-    ));
+    ))
 
-    var done = this.async();
+    var done = this.async()
     this.prompt({
       type    : 'input',
       name    : 'name',
       message : 'Qual o nome do projeto?',
       default : 'design'
     }, function (answers) {
-      this.name = answers.name;
-      done();
-    }.bind(this));
+      this.name = answers.name
+      done()
+    }.bind(this))
 
   },
 
   support : function () {
 
-    var done = this.async();
+    var done = this.async()
 
     var prompts = [{
       type: 'checkbox',
@@ -51,31 +51,26 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeJade',
         checked: false
       },{
-        name: 'styledown',
-        value: 'includeStyledown',
-        checked: false
-      },{
         name: 'webpack',
         value: 'includeWebpack',
         checked: false
       }]
-    }];
+    }]
 
     this.prompt(prompts, function (answers) {
-      var features = answers.features;
+      var features = answers.features
 
       function hasFeature(feat) {
-        return features && features.indexOf(feat) !== -1;
+        return features && features.indexOf(feat) !== -1
       }
 
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeJade = hasFeature('includeJade');
-      this.includeSenadoCSS = hasFeature('includeSenadoCSS');
-      this.includeWebpack = hasFeature('includeWebpack');
-      this.includeStyledown = hasFeature('includeStyledown');
+      this.includeBootstrap = hasFeature('includeBootstrap')
+      this.includeJade = hasFeature('includeJade')
+      this.includeSenadoCSS = hasFeature('includeSenadoCSS')
+      this.includeWebpack = hasFeature('includeWebpack')
 
-      done();
-    }.bind(this));
+      done()
+    }.bind(this))
 
   },
 
@@ -83,7 +78,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.includeBootstrap) {
 
-      var done = this.async();
+      var done = this.async()
 
       var prompts = [{
         type: 'list',
@@ -97,12 +92,12 @@ module.exports = yeoman.generators.Base.extend({
           value: 'https://github.com/twbs/bootstrap.git#v2.3.2'
         }],
         default: 0
-      }];
+      }]
 
       this.prompt(prompts, function (answers) {
-        this.bootstrapVersion = answers.bootstrapVersion;
-        done();
-      }.bind(this));
+        this.bootstrapVersion = answers.bootstrapVersion
+        done()
+      }.bind(this))
 
     }
   },
@@ -110,7 +105,7 @@ module.exports = yeoman.generators.Base.extend({
   twbsRefer : function () {
     if (this.includeBootstrap) {
 
-      var done = this.async();
+      var done = this.async()
 
       var prompts = [{
         type: 'list',
@@ -124,12 +119,12 @@ module.exports = yeoman.generators.Base.extend({
           value: false
         }],
         default: 0
-      }];
+      }]
 
       this.prompt(prompts, function (answers) {
-        this.bootstrapEmbed = answers.bootstrapEmbed;
-        done();
-      }.bind(this));
+        this.bootstrapEmbed = answers.bootstrapEmbed
+        done()
+      }.bind(this))
 
     }
   },
@@ -148,70 +143,63 @@ module.exports = yeoman.generators.Base.extend({
 
     gruntfile: function () {
 
-      this.template('Gruntfile.js');
+      this.template('Gruntfile.js')
 
-      this.template('config/autoprefixer.js')
-      this.template('config/clean.js')
-      this.template('config/concurrent.js')
-      this.template('config/config.js')
-      this.template('config/connect.js')
-      this.template('config/copy.js')
-      this.template('config/cssmin.js')
-      this.template('config/less.js')
-      this.template('config/watch.js')
+      this.template('grunt/aliases.yaml')
+      this.template('grunt/autoprefixer.js')
+      this.template('grunt/clean.js')
+      this.template('grunt/concurrent.js')
+      this.template('grunt/connect.js')
+      this.template('grunt/copy.js')
+      this.template('grunt/cssmin.js')
+      this.template('grunt/less.js')
+      this.template('grunt/watch.js')
 
       if (this.includeWebpack) {
-        this.template('config/webpack.js')
+        this.template('grunt/webpack.js')
         this.template('webpack.config.js')
       }
       if (this.includeJade) {
-        this.template('config/jade.js')
+        this.template('grunt/jade.js')
       }
 
     },
 
     app: function () {
-      this.template('_package.json', 'package.json');
+      this.template('_package.json', 'package.json')
     },
 
     git: function () {
-      this.template('gitignore', '.gitignore');
-      this.copy('gitattributes', '.gitattributes');
+      this.template('gitignore', '.gitignore')
+      this.copy('gitattributes', '.gitattributes')
     },
 
     styles: function () {
 
-      var bootstrapFile;
+      var bootstrapFile
 
       if (this.includeBootstrap) {
         switch (this.bootstrapVersion) {
-          case  "^3.3.5":
-            bootstrapFile = "bootstrap3.less"
-            break;
-          case  "https://github.com/twbs/bootstrap.git#v2.3.2":
-            bootstrapFile = "bootstrap2.less"
-            break;
+          case  '^3.3.5':
+            bootstrapFile = 'bootstrap3.less'
+            break
+          case  'https://github.com/twbs/bootstrap.git#v2.3.2':
+            bootstrapFile = 'bootstrap2.less'
+            break
         }
-        this.fs.copy(
-          this.templatePath('app/less/vendors/' + bootstrapFile),
-          this.destinationPath('app/less/vendors/bootstrap.less')
-        );
+        this.template(
+          'app/less/vendors/' + bootstrapFile,
+          'app/less/vendors/bootstrap.less'
+        )
       }
 
       if (this.includeSenadoCSS) {
-        this.copy('app/less/vendors/senado.less');
+        this.copy('app/less/vendors/senado.less')
       }
 
-      this.copy('app/less/utils/variables.less');
-      this.template('app/less/main.less');
+      this.copy('app/less/utils/variables.less')
+      this.template('app/less/main.less')
 
-    },
-    
-    styledown : function () {
-      if (this.includeStyledown) {
-        this.template('config/styledown.js');
-        this.directory('styleguide');
-      }
     },
 
     scripts: function () {
@@ -233,9 +221,9 @@ module.exports = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    if (this.installDeps != 'noinstall') {
+    if (this.installDeps !== 'noinstall') {
       this.npmInstall()
     }
   }
 
-});
+})

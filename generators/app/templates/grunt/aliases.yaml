@@ -1,0 +1,18 @@
+default:
+  - 'build'
+
+_dev:
+  - 'clean'
+  - 'concurrent'
+  - 'autoprefixer'
+  - 'connect:dev'
+  <% if (includeWebpack) { %>- 'webpack:dev'<% } %>
+  - 'watch'
+
+build:
+  - 'clean'
+  - 'concurrent'
+  - 'autoprefixer'
+  - 'cssmin'
+  <% if (includeWebpack) { %>- 'webpack:build'<% } %>
+  - 'copy'
