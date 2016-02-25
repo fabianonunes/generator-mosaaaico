@@ -145,22 +145,21 @@ module.exports = yeoman.generators.Base.extend({
 
       this.template('Gruntfile.js');
 
-      this.template('config/autoprefixer.js')
-      this.template('config/clean.js')
-      this.template('config/concurrent.js')
-      this.template('config/config.js')
-      this.template('config/connect.js')
-      this.template('config/copy.js')
-      this.template('config/cssmin.js')
-      this.template('config/less.js')
-      this.template('config/watch.js')
+      this.template('grunt/autoprefixer.js')
+      this.template('grunt/clean.js')
+      this.template('grunt/concurrent.js')
+      this.template('grunt/connect.js')
+      this.template('grunt/copy.js')
+      this.template('grunt/cssmin.js')
+      this.template('grunt/less.js')
+      this.template('grunt/watch.js')
 
       if (this.includeWebpack) {
-        this.template('config/webpack.js')
+        this.template('grunt/webpack.js')
         this.template('webpack.config.js')
       }
       if (this.includeJade) {
-        this.template('config/jade.js')
+        this.template('grunt/jade.js')
       }
 
     },
