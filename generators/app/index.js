@@ -8,31 +8,31 @@ module.exports = yeoman.generators.Base.extend({
 
   constructor: function () {
     yeoman.generators.Base.apply(this, arguments);
-    this.argument('installDeps', { type: String, defaults: false });
+    this.argument('installDeps', { type: String, defaults: false })
   },
 
   prompting: function () {
 
     this.log(yosay(
       chalk.red('SenadoCss') + '!'
-    ));
+    ))
 
-    var done = this.async();
+    var done = this.async()
     this.prompt({
       type    : 'input',
       name    : 'name',
       message : 'Qual o nome do projeto?',
       default : 'design'
     }, function (answers) {
-      this.name = answers.name;
-      done();
-    }.bind(this));
+      this.name = answers.name
+      done()
+    }.bind(this))
 
   },
 
   support : function () {
 
-    var done = this.async();
+    var done = this.async()
 
     var prompts = [{
       type: 'checkbox',
@@ -55,22 +55,22 @@ module.exports = yeoman.generators.Base.extend({
         value: 'includeWebpack',
         checked: false
       }]
-    }];
+    }]
 
     this.prompt(prompts, function (answers) {
-      var features = answers.features;
+      var features = answers.features
 
       function hasFeature(feat) {
-        return features && features.indexOf(feat) !== -1;
+        return features && features.indexOf(feat) !== -1
       }
 
-      this.includeBootstrap = hasFeature('includeBootstrap');
-      this.includeJade = hasFeature('includeJade');
-      this.includeSenadoCSS = hasFeature('includeSenadoCSS');
-      this.includeWebpack = hasFeature('includeWebpack');
+      this.includeBootstrap = hasFeature('includeBootstrap')
+      this.includeJade = hasFeature('includeJade')
+      this.includeSenadoCSS = hasFeature('includeSenadoCSS')
+      this.includeWebpack = hasFeature('includeWebpack')
 
-      done();
-    }.bind(this));
+      done()
+    }.bind(this))
 
   },
 
@@ -78,7 +78,7 @@ module.exports = yeoman.generators.Base.extend({
 
     if (this.includeBootstrap) {
 
-      var done = this.async();
+      var done = this.async()
 
       var prompts = [{
         type: 'list',
@@ -92,12 +92,12 @@ module.exports = yeoman.generators.Base.extend({
           value: 'https://github.com/twbs/bootstrap.git#v2.3.2'
         }],
         default: 0
-      }];
+      }]
 
       this.prompt(prompts, function (answers) {
-        this.bootstrapVersion = answers.bootstrapVersion;
-        done();
-      }.bind(this));
+        this.bootstrapVersion = answers.bootstrapVersion
+        done()
+      }.bind(this))
 
     }
   },
@@ -105,7 +105,7 @@ module.exports = yeoman.generators.Base.extend({
   twbsRefer : function () {
     if (this.includeBootstrap) {
 
-      var done = this.async();
+      var done = this.async()
 
       var prompts = [{
         type: 'list',
@@ -119,12 +119,12 @@ module.exports = yeoman.generators.Base.extend({
           value: false
         }],
         default: 0
-      }];
+      }]
 
       this.prompt(prompts, function (answers) {
-        this.bootstrapEmbed = answers.bootstrapEmbed;
-        done();
-      }.bind(this));
+        this.bootstrapEmbed = answers.bootstrapEmbed
+        done()
+      }.bind(this))
 
     }
   },
@@ -143,7 +143,7 @@ module.exports = yeoman.generators.Base.extend({
 
     gruntfile: function () {
 
-      this.template('Gruntfile.js');
+      this.template('Gruntfile.js')
 
       this.template('grunt/autoprefixer.js')
       this.template('grunt/clean.js')
@@ -165,26 +165,26 @@ module.exports = yeoman.generators.Base.extend({
     },
 
     app: function () {
-      this.template('_package.json', 'package.json');
+      this.template('_package.json', 'package.json')
     },
 
     git: function () {
-      this.template('gitignore', '.gitignore');
-      this.copy('gitattributes', '.gitattributes');
+      this.template('gitignore', '.gitignore')
+      this.copy('gitattributes', '.gitattributes')
     },
 
     styles: function () {
 
-      var bootstrapFile;
+      var bootstrapFile
 
       if (this.includeBootstrap) {
         switch (this.bootstrapVersion) {
           case  '^3.3.5':
             bootstrapFile = 'bootstrap3.less'
-            break;
+            break
           case  'https://github.com/twbs/bootstrap.git#v2.3.2':
             bootstrapFile = 'bootstrap2.less'
-            break;
+            break
         }
         this.template(
           'app/less/vendors/' + bootstrapFile,
@@ -193,11 +193,11 @@ module.exports = yeoman.generators.Base.extend({
       }
 
       if (this.includeSenadoCSS) {
-        this.copy('app/less/vendors/senado.less');
+        this.copy('app/less/vendors/senado.less')
       }
 
-      this.copy('app/less/utils/variables.less');
-      this.template('app/less/main.less');
+      this.copy('app/less/utils/variables.less')
+      this.template('app/less/main.less')
 
     },
 
@@ -225,4 +225,4 @@ module.exports = yeoman.generators.Base.extend({
     }
   }
 
-});
+})
