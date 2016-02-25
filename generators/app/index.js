@@ -186,10 +186,10 @@ module.exports = yeoman.generators.Base.extend({
             bootstrapFile = 'bootstrap2.less'
             break;
         }
-        this.fs.copy(
-          this.templatePath('app/less/vendors/' + bootstrapFile),
-          this.destinationPath('app/less/vendors/bootstrap.less')
-        );
+        this.template(
+          'app/less/vendors/' + bootstrapFile,
+          'app/less/vendors/bootstrap.less'
+        )
       }
 
       if (this.includeSenadoCSS) {
