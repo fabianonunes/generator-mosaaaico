@@ -9,8 +9,7 @@ module.exports = {
   less: {
     files: ['<%%= config.app %>/less/{,*/}*.less'],
     tasks: [
-      'less',<% if (includeStyledown) { %>
-      'styledown',<% } %>
+      'less',
       'autoprefixer'
     ]
   },<% if (includeJade) { %>
