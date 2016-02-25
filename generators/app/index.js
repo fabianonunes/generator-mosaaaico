@@ -145,6 +145,7 @@ module.exports = yeoman.generators.Base.extend({
 
       this.template('Gruntfile.js')
 
+      this.template('grunt/aliases.yaml')
       this.template('grunt/autoprefixer.js')
       this.template('grunt/clean.js')
       this.template('grunt/concurrent.js')

@@ -6,9 +6,11 @@ module.exports = function (grunt) {
 
     require('load-grunt-config')(grunt, {
       data : {
-        app: 'app',
-        dist: 'dist',
-        fonts: <%- JSON.stringify(importFontsFrom) %>
+        config: {
+          app: 'app',
+          dist: 'dist',
+          fonts: <%- JSON.stringify(importFontsFrom) %>
+        }
       }
     })
 
