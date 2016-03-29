@@ -20,6 +20,11 @@ module.exports = function (grunt) {
             grunt.config.set('connect.options.hostname', '*')
         }
 
+        if (grunt.option('port')) {
+            grunt.config.set('connect.options.port', grunt.option('port'))
+            grunt.config.set('connect.options.livereload', grunt.option('port') + 500)
+        }
+
         grunt.task.run(['_dev'])
 
     })
